@@ -1,0 +1,104 @@
+a {
+  color: #00B7FF;
+}
+body, html {
+  padding: 0;
+  margin: 0;
+}
+div{
+  display: flex;
+  flex: 1;
+}
+
+#flexDiv {
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+#header {
+  flex: 1;
+  background-color: rgb(199, 229, 247);
+  border-bottom: 1px solid rgb(37, 36, 36);
+}
+
+#body {
+  flex: 8;
+}
+
+#reload {
+  background-image: url(../images/reload.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30%;
+}
+
+#showTop100 {
+  background-image: url(../images/star.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30%;
+}
+
+input {
+  width: 100%;
+}
+
+#input {
+  background-color: slateblue;
+}
+
+.form-inline {  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+input {
+  width: 350px;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  font-size: 40px;
+}
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+.form-inline {
+  padding-left: 20px;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgb(37, 36, 36);
+}
+
+div.submit {
+  display: inline;
+  padding: 20px;
+  background-color: rgb(57, 20, 220);
+  justify-content: center;
+  align-items: center;
+}
+div > a {
+  font-size: 40px;
+  color: #fff;
+  margin: auto;
+}
