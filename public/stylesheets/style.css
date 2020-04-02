@@ -1,9 +1,12 @@
-a {
-  color: #00B7FF;
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+* {
+  font-family: "Roboto", sans-serif;
 }
 body, html {
   padding: 0;
   margin: 0;
+  background-color: rgb(238, 236, 252);
 }
 div{
   display: flex;
@@ -19,23 +22,30 @@ div{
 
 #header {
   flex: 1;
-  background-color: rgb(199, 229, 247);
+  background-color: slateblue;
   border-bottom: 1px solid rgb(37, 36, 36);
 }
 
 #body {
-  flex: 8;
+  flex: 10;
+  overflow-y:scroll;
 }
 
 #reload {
-  background-image: url(../images/reload.png);
+  background-image: url(../images/plus.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30%;
+}
+#back {
+  background-image: url(../images/back.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 30%;
 }
 
 #showTop100 {
-  background-image: url(../images/star.png);
+  background-image: url(../images/list.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 30%;
@@ -71,7 +81,7 @@ input {
   font-size: 40px;
 }
 
-.form-inline button {
+.form-inline {
   padding: 10px 20px;
   background-color: dodgerblue;
   border: 1px solid #ddd;
@@ -79,7 +89,7 @@ input {
   cursor: pointer;
 }
 
-.form-inline button:hover {
+.form-inline{
   background-color: royalblue;
 }
 
@@ -97,8 +107,80 @@ div.submit {
   justify-content: center;
   align-items: center;
 }
-div > a {
-  font-size: 40px;
-  color: #fff;
+
+ul{        
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  padding: 5px 0px 5px 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #efefef;
+  font-size: 70px;
+}
+li {
+  border-bottom: 1px solid #efefef;
+  padding: 10px 30px;
+  background-color: #fff;
+  width: 90%;
   margin: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.title {
+  font-size: 40px;
+}
+.num {
+  font-size: 60px;
+}
+.singer {
+  font-size: 35px;
+  color: rgb(141, 135, 135);
+}
+.author {
+  font-size: 40px;
+}
+
+.login-page {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 600px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.songli {
+  justify-content: space-between;
+  align-content: center;
+  text-align: center;
+}
+
+.streamed {
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid slateblue;
+  color: slateblue;
+}
+form.streamed {
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+button.streamed {
+  display: flex;
+  flex: 1;
+  width: 100px;
+  height: 100px;
+  font-size: 25px;
 }

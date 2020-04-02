@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+  </head>
+  <body><div class="login-page">
+    <div class="form">
+      <form class="login-form" action="/save" method="POST">
+        <input type="text" placeholder="제목" name='title' required/>
+        <input type="text" placeholder="가수" name='singer' required/>
+        <input type="hidden" id="author" name="name" value="<%= user.name %>"/>
+        <input type="hidden" id="belong" name="belong" value="<%= user.belong %>"/>
+        <input type="hidden" id="rank" name="rank" value="<%= user.rank %>"/>
+        <button type="submit">신청</button>
+    </div>
+  </div>
+  </body>
+</html>

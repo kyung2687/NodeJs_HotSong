@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div id='flexDiv'>
+      <div id='header'>
+        <div id='back' onclick="location.href='/index'"></div>
+        <div style="flex: 3;"></div>
+        <div></div>
+      </div>
+      <div id='body'>
+        <ul class="list">
+          <% var last_month=""
+             var last_date=""
+             var index = 1
+          %>
+          <% for(var i=songlist.length - 1; i >= 0; i--) {%>
+            <% if(last_month != songlist[i].up_date.getMonth() + 1 || last_date != songlist[i].up_date.getDate()) { 
+              last_month=songlist[i].up_date.getMonth() + 1;
+              last_date=songlist[i].up_date.getDate();
+            %>
+            <hr>
+            <div style="justify-content: center; align-items: center;">
+              <a style="color:rgb(116, 114, 121); font-size: 40px;"><%= songlist[i].up_date.getMonth() + 1 %>월 <%= songlist[i].up_date.getDate() %>일</a>
+            </div>
+              <% } %>
+            <li>
+              <div class="songli">
+                <div style="flex: 2; justify-content: center; align-items: center;">
+                <a class="num"><%= index++ %></a>
+                </div>
+                <div style="flex: 6; flex-direction: column; justify-content: start; align-items: flex-start;">
+                  <a class="title"><%= songlist[i].title %></a>
+                  <a class="singer"><%= songlist[i].singer %></a>
+                </div>
+                <div style="flex: 10; justify-content: start; align-items: center;">
+                  <a class="author">[<%= songlist[i].belong %>]&nbsp</a>
+                  <a class="author"><%= songlist[i].name %> <%= songlist[i].rank %></a>
+                </div>
+                <div style="flex: 1; justify-content: start; align-items: center;">
+                </div>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

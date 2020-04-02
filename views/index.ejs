@@ -6,18 +6,37 @@
   <body>
     <div id='flexDiv'>
       <div id='header'>
-        <div id='reload'></div>
-        <div></div>
-        <div id='showTop100'></div>
+        <div id='reload' onclick="location.href='/songsin'"></div>
+        <div style="flex: 3;">
+        </div>
+        <div id='showTop100' onclick="location.href='/streamed'"></div>
       </div>
       <div id='body'>
-      </div>
-      <div class='form-inline'>
-        <form action="/save" method="POST">
-          <input type="text" id="singer" name="singer">
-          <input type="text" id="title" name="title">
-          <input type='submit'>
-        </form>
+        <ul class="list">
+          <% for(var i=0; i < songlist.length; i++) { %>
+            <li>
+              <div class="songli">
+                <div style="flex: 2; justify-content: center; align-items: center;">
+                <a class="num"><%= i+1 %></a>
+                </div>
+                <div style="flex: 6; flex-direction: column; justify-content: start; align-items: flex-start;">
+                  <a class="title"><%= songlist[i].title %></a>
+                  <a class="singer"><%= songlist[i].singer %></a>
+                </div>
+                <div style="flex: 10; justify-content: start; align-items: center;">
+                  <a class="author">[<%= songlist[i].belong %>]&nbsp</a>
+                  <a class="author"><%= songlist[i].name %> <%= songlist[i].rank %></a>
+                </div>
+                <div style="flex: 1; justify-content: start; align-items: center;">
+                  <form action="/streaming" method="POST" class="streamed" style="display: inline;">
+                    <button type="submit" class="streamed">재생시 클릭</button>
+                    <input type="hidden" id="title" name="title" value="<%= songlist[i].title %>">
+                  </form>
+                </div>
+              </div>
+            </li>
+          <% } %>
+        </ul>
       </div>
     </div>
   </body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var result = <%= result %>;
+    if(result==2) 
+    {  
+      alert('아이디를 확인해주세요');
+    } else if(result==0) {
+      alert('비밀번호를 확인해주세요.');
+    }
+</script>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+  </head>
+  <body><div class="login-page">
+    <div class="form">
+      <form class="login-form" action="/login" method="POST">
+        <input type="text" placeholder="아이디" name='id'   required/>
+        <input type="password" placeholder="비밀번호" name='password' required/>
+        <button type="submit">login</button>
+        <p class="message">Not registered? <a href="/signup">Sign up</a></p>
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

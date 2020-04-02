@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+    var result = <%= result %>;
+    console.log(result)
+    if(result==2) 
+    {  
+      alert('이미 있는 아이디 입니다');
+    }
+</script>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+  </head>
+  <body>
+    <div class="login-page">
+        <div class="form">
+        <form class="login-form" action="/signup" method="POST">
+            <input type="text"      name="name"     id="name"     placeholder="이름"        required/>
+            <input type="text"      name="id"       id="id"       placeholder="아이디"      required/>
+            <input type="password"  name="password" id="password" placeholder="비밀번호"    required/>
+            <input type="text"      name="belong"   id="belong"   placeholder="소속"        required/>
+            <input type="text"      name="rank"     id="rank"     placeholder="직급"        required/>
+            <input type="text"      name="task"     id="task"     placeholder="업무"        required/>
+            <button type="submit">create</button>
+            <p class="message">Already registered? <a href="/">Sign In</a></p>
+        </form>
+    </div>
+  </div>
+  </body>
+</html>
