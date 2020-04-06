@@ -7,13 +7,31 @@
     <div id='flexDiv'>
       <div id='header'>
         <div id='reload' onclick="location.href='/songsin'"></div>
-        <div style="flex: 3;">
+        <div style="flex: 3; justify-content: center;">
+          <a style="font-weight: 600; color: #fff; font-size: 60px;
+                    text-align: center; justify-content: center; align-items: center;
+                    display: flex;">
+            신청곡 리스트
+          </a>
         </div>
         <div id='showTop100' onclick="location.href='/streamed'"></div>
       </div>
       <div id='body'>
         <ul class="list">
+          <% var last_month=""
+             var last_date=""
+             var index = 1
+          %>
           <% for(var i=0; i < songlist.length; i++) { %>
+            <% if(last_month != songlist[i].up_date.getMonth() + 1 || last_date != songlist[i].up_date.getDate()) { 
+              last_month=songlist[i].up_date.getMonth() + 1;
+              last_date=songlist[i].up_date.getDate();
+            %>
+            <hr>
+            <div style="justify-content: center; align-items: center;">
+              <a style="color:rgb(116, 114, 121); font-size: 40px;"><%= songlist[i].up_date.getMonth() + 1 %>월 <%= songlist[i].up_date.getDate() %>일</a>
+            </div>
+              <% } %>
             <li>
               <div class="songli">
                 <div style="flex: 2; justify-content: center; align-items: center;">
@@ -28,15 +46,23 @@
                   <a class="author"><%= songlist[i].name %> <%= songlist[i].rank %></a>
                 </div>
                 <div style="flex: 1; justify-content: start; align-items: center;">
+                  <% if(user.id=="admin" && i==0) { %>
                   <form action="/streaming" method="POST" class="streamed" style="display: inline;">
                     <button type="submit" class="streamed">재생시 클릭</button>
                     <input type="hidden" id="title" name="title" value="<%= songlist[i].title %>">
                   </form>
+                  <% } %>
                 </div>
               </div>
             </li>
           <% } %>
         </ul>
+      </div>
+      <% if(user.id=="admin") { %>
+      <div class="adminbutton" onclick="location.href='/admin'">
+      </div>
+      <% } %> 
+      <div class="plusbutton" onclick="location.href='/songsin'">
       </div>
     </div>
   </body>

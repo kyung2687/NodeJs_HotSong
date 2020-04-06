@@ -7,6 +7,8 @@ var songSchema = new Schema({
     name: String,
     belong: String,
     rank: String,
+    url: String,
+    duration: String,
     up_date: { type: Date, default: Date.now()  },
     streamingYN: { type: Boolean, default: false  },
 });

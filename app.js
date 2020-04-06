@@ -4,9 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var request = require('request');
+var Youtube = require('youtube-node');
+var youtube = new Youtube();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var backdoorSongRouter = require('./routes/backdoor_song');
+var backdoorUserRouter = require('./routes/backdoor_user');
+var adminRouter = require('./routes/admin');
 
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
@@ -37,9 +41,9 @@ db.once('open', function(){
 mongoose.connect('mongodb://127.0.0.1:27017');
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-
+app.use('/admin', adminRouter);
+app.use('/backdoor/song', backdoorSongRouter);
+app.use('/backdoor/user', backdoorUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

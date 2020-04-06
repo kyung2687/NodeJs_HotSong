@@ -184,3 +184,31 @@ button.streamed {
   height: 100px;
   font-size: 25px;
 }
+
+.adminbutton {
+  position: fixed; 
+  bottom:50px; 
+  left: 50px; 
+  width: 130px; 
+  height: 130px; 
+  background-color: slateblue;
+  background-image: url(../images/edit.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50%;
+  border-radius: 70px;
+}
+
+.plusbutton {
+  position: fixed; 
+  bottom:50px; 
+  right: 50px; 
+  width: 130px; 
+  height: 130px; 
+  background-color: slateblue;
+  background-image: url(../images/plus.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50%;
+  border-radius: 70px;
+}
