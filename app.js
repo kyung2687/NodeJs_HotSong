@@ -4,13 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var request = require('request');
+var session = require('express-session')
 var Youtube = require('youtube-node');
 var youtube = new Youtube();
 
 var indexRouter = require('./routes/index');
-var backdoorSongRouter = require('./routes/backdoor_song');
-var backdoorUserRouter = require('./routes/backdoor_user');
-var adminRouter = require('./routes/admin');
 
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
@@ -28,8 +26,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-var mongoose    = require('mongoose');
+app.use(session({
+  secret: 'etaxstaxsen',
+  resave:false,
+  saveUninitialized: true,
+}))
+var mongoose = require('mongoose');
 
 var db = mongoose.connection;
 db.on('error', console.error);
@@ -41,9 +43,6 @@ db.once('open', function(){
 mongoose.connect('mongodb://127.0.0.1:27017');
 
 app.use('/', indexRouter);
-app.use('/admin', adminRouter);
-app.use('/backdoor/song', backdoorSongRouter);
-app.use('/backdoor/user', backdoorUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

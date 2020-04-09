@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <form name="act" action="/songsin" method="get">
+    <input type="hidden" name="title" value="">
+    <input type="hidden" name="singer" value="">
+    <input type="hidden" name="image" value="">
+  </form>
+  <div id='flexDiv'>
+    <div id='header' style="flex: 2;">
+      <div id='back' onclick="location.href='/index'"></div>
+      <div style="flex: 3; justify-content: center;">
+        <a style="font-weight: 600; color: #fff; font-size: 60px;
+          text-align: center; justify-content: center; align-items: center;
+          display: flex;">
+          실시간 TOP 200
+        </a></div>
+      <div></div>
+    </div>    
+    <div>
+      <form class='searchform' action="/search" method="POST">
+        <input type="text" placeholder="검색할 내용" name='content'required/>
+        <button type="submit"></button>
+      </form>
+    </div>
+    <div id='body' style="flex: 20;">
+      <ul class="list">
+        <% for(var i=0; i < songlist.length; i++) { %>
+        <li>
+          <div class="songli" onclick="document.act.title.value='<%= songlist[i].title %>';document.act.singer.value='<%= songlist[i].singer %>';document.act.image.value='<%= songlist[i].image %>';document.act.submit();">
+            <div style="flex: 2; justify-content: center; align-items: center;">
+              <a class="num"><%= i+1 %></a>
+            </div>
+            <div class="topimage" style="background-image: url(<%= songlist[i].image %>);">
+
+            </div>
+            <div style="flex: 17; flex-direction: column; justify-content: start; align-items: flex-start;">
+              <a class="title"><%= songlist[i].title %></a>
+              <a class="singer"><%= songlist[i].singer %></a>
+            </div>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>

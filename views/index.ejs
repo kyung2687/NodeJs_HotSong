@@ -1,4 +1,29 @@
 <!DOCTYPE html>
+<script>
+  var delindex = -1
+
+  function delsong(index, title, singer) {
+    if(delindex == index) {
+      document.delact.title.value=title
+      document.delact.singer.value=singer
+      document.delact.submit()
+    } else delindex = index;
+  }
+  function showuserlist(name, task) {
+    document.userlistact.name.value=name
+    document.userlistact.task.value=task
+    document.userlistact.submit()
+  }
+</script>
+<form action="/delsong" name="delact" method="POST">
+  <input type="hidden" id="title" name="title" value="">
+  <input type="hidden" id="singer" name="singer" value="">
+  <input type="hidden" id="name" name="name" value="<%= user.name %>">
+</form>
+<form action="/showuserlist" name="userlistact" method="POST">
+  <input type="hidden" id="name" name="name" value="">
+  <input type="hidden" id="task" name="task" value="">
+</form>
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -6,7 +31,7 @@
   <body>
     <div id='flexDiv'>
       <div id='header'>
-        <div id='reload' onclick="location.href='/songsin'"></div>
+        <div id='search' onclick="location.href='/top200'"></div>
         <div style="flex: 3; justify-content: center;">
           <a style="font-weight: 600; color: #fff; font-size: 60px;
                     text-align: center; justify-content: center; align-items: center;
@@ -14,7 +39,7 @@
             신청곡 리스트
           </a>
         </div>
-        <div id='showTop100' onclick="location.href='/streamed'"></div>
+        <div id='streamlist' onclick="location.href='/streamed'"></div>
       </div>
       <div id='body'>
         <ul class="list">
@@ -34,34 +59,38 @@
               <% } %>
             <li>
               <div class="songli">
-                <div style="flex: 2; justify-content: center; align-items: center;">
-                <a class="num"><%= i+1 %></a>
+                <div class="topimage" style="background-image: url(<%= songlist[i].image %>);flex:3;background-size: 100%; margin-right:10px" OnClick="location.href='<%= songlist[i].url %>'">
                 </div>
-                <div style="flex: 6; flex-direction: column; justify-content: start; align-items: flex-start;">
+                <div style="flex: 7; flex-direction: column; justify-content: center; align-items: flex-start;" OnClick="location.href='<%= songlist[i].url %>'">
                   <a class="title"><%= songlist[i].title %></a>
                   <a class="singer"><%= songlist[i].singer %></a>
                 </div>
-                <div style="flex: 10; justify-content: start; align-items: center;">
-                  <a class="author">[<%= songlist[i].belong %>]&nbsp</a>
-                  <a class="author"><%= songlist[i].name %> <%= songlist[i].rank %></a>
+                <div style="flex: 11; justify-content: start; align-items: center;" OnClick="javascript:showuserlist('<%= songlist[i].name %>','<%= songlist[i].task %>')">
+                  <a class="author">[<%= songlist[i].task %>]&nbsp</a>
+                  <a class="author"><%= songlist[i].name %></a>
                 </div>
-                <div style="flex: 1; justify-content: start; align-items: center;">
+                <!--
                   <% if(user.id=="admin" && i==0) { %>
-                  <form action="/streaming" method="POST" class="streamed" style="display: inline;">
-                    <button type="submit" class="streamed">재생시 클릭</button>
-                    <input type="hidden" id="title" name="title" value="<%= songlist[i].title %>">
-                  </form>
+                    <div style="flex: 1; justify-content: start; align-items: center;">
+                      <form action="/streaming" method="POST" class="streamed" style="display: inline;">
+                        <button type="submit" class="streamed">재생시 클릭</button>
+                        <input type="hidden" id="title" name="title" value="<%= songlist[i].title %>">
+                      </form>
+                    </div>
                   <% } %>
-                </div>
+                -->
+                <% if(((user.name==songlist[i].name) && (user.task==songlist[i].task)) || user.name=="관리자") { %>
+                  <div style="flex: 1; justify-content: start; align-items: center;">
+                    <button class="del" OnClick="javascript:delsong('<%= i %>','<%= songlist[i].title %>','<%= songlist[i].singer %>')">
+                      X
+                    </button>
+                  </div>
+                <% } %>
               </div>
             </li>
           <% } %>
         </ul>
       </div>
-      <% if(user.id=="admin") { %>
-      <div class="adminbutton" onclick="location.href='/admin'">
-      </div>
-      <% } %> 
       <div class="plusbutton" onclick="location.href='/songsin'">
       </div>
     </div>

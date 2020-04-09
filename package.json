@@ -12,6 +12,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "^4.16.4",
+    "express-session": "^1.17.0",
     "forever": "^2.0.0",
     "googleapis": "^48.0.0",
     "http-errors": "~1.6.3",

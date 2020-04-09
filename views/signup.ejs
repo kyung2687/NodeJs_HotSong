@@ -18,9 +18,13 @@
             <input type="text"      name="name"     id="name"     placeholder="이름"        required/>
             <input type="text"      name="id"       id="id"       placeholder="아이디"      required/>
             <input type="password"  name="password" id="password" placeholder="비밀번호"    required/>
-            <input type="text"      name="belong"   id="belong"   placeholder="소속"        required/>
-            <input type="text"      name="rank"     id="rank"     placeholder="직급"        required/>
-            <input type="text"      name="task"     id="task"     placeholder="업무"        required/>
+            <select id="task" name="task">
+              <option value="금고통합관리">금고통합관리</option>
+              <option value="E-STAX/SEN">E-STAX/SEN</option>
+              <option value="OCR/기관부수">OCR/기관부수</option>
+              <option value="공금예금/법원">공금예금/법원</option>
+              <option value="기타">기타</option>
+            </select>
             <button type="submit">create</button>
             <p class="message">Already registered? <a href="/">Sign In</a></p>
         </form>

@@ -31,8 +31,8 @@ div{
   overflow-y:scroll;
 }
 
-#reload {
-  background-image: url(../images/plus.png);
+#search {
+  background-image: url(../images/search.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 30%;
@@ -44,8 +44,15 @@ div{
   background-size: 30%;
 }
 
-#showTop100 {
+#streamlist {
   background-image: url(../images/list.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30%;
+}
+
+#logout {
+  background-image: url(../images/logout.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 30%;
@@ -120,7 +127,7 @@ ul{
 }
 li {
   border-bottom: 1px solid #efefef;
-  padding: 10px 30px;
+  padding: 10px 20px;
   background-color: #fff;
   width: 90%;
   margin: auto;
@@ -131,17 +138,21 @@ li {
 }
 
 .title {
-  font-size: 40px;
+  font-size: 35px;
+  text-align: start;
 }
 .num {
   font-size: 60px;
+  text-align: end;
 }
 .singer {
-  font-size: 35px;
+  font-size: 30px;
   color: rgb(141, 135, 135);
+  text-align: start;
 }
 .author {
-  font-size: 40px;
+  font-size: 35px;
+  text-align: start;
 }
 
 .login-page {
@@ -161,7 +172,7 @@ li {
 }
 
 .songli {
-  justify-content: space-between;
+  justify-content: center;
   align-content: center;
   text-align: center;
 }
@@ -188,7 +199,7 @@ button.streamed {
 .adminbutton {
   position: fixed; 
   bottom:50px; 
-  left: 50px; 
+  right: 50px; 
   width: 130px; 
   height: 130px; 
   background-color: slateblue;
@@ -202,7 +213,7 @@ button.streamed {
 .plusbutton {
   position: fixed; 
   bottom:50px; 
-  right: 50px; 
+  left: 50px; 
   width: 130px; 
   height: 130px; 
   background-color: slateblue;
@@ -211,4 +222,62 @@ button.streamed {
   background-position: center center;
   background-size: 50%;
   border-radius: 70px;
+}
+
+.topimage {
+  flex: 4;
+  bottom:50px; 
+  right: 50px; 
+  width: 130px; 
+  height: 130px; 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80%;
+}
+
+.searchform {
+  display: flex;
+  padding: 15px 30px 10px;
+  flex: 1;
+}
+.searchform > input {
+  font-size: 40px;
+  padding: 0px 20px;
+  width: 100%;
+  flex: 10;
+  border: 0;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.searchform > button {
+  font-size: 40px;
+  padding-left: 10px;
+  width: 100%;
+  flex: 1;
+  background-color: slateblue;
+  background-image: url(../images/search.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30%;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+button.del {
+  box-sizing: border-box;
+  width: 70px;
+  height: 70px;
+  border: 2px solid rgb(219, 65, 65);
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  color:rgb(219, 65, 65);
+  font-size: 50px;
+  font-weight: 800;
+}			
+.del:hover{
+  transition: 100ms ease-in;
+  border-radius: 0;
+  background-color: rgb(219, 65, 65);
+  border-radius: 20px;
+  color:#fff;
 }

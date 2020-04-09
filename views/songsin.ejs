@@ -3,16 +3,20 @@
   <head>
     <link rel='stylesheet' href='/stylesheets/login.css' />
   </head>
-  <body><div class="login-page">
-    <div class="form">
-      <form class="login-form" action="/save" method="POST">
-        <input type="text" placeholder="제목" name='title' required/>
-        <input type="text" placeholder="가수" name='singer' required/>
-        <input type="hidden" id="author" name="name" value="<%= user.name %>"/>
-        <input type="hidden" id="belong" name="belong" value="<%= user.belong %>"/>
-        <input type="hidden" id="rank" name="rank" value="<%= user.rank %>"/>
-        <button type="submit">신청</button>
+  <body>
+    <div class="login-page" style="flex-direction: column;">
+      <div class="form">
+        <form class="login-form" action="/save" method="POST">
+          <input type="text" placeholder="제목" name='title' value="<%= title %>"required/>
+          <input type="text" placeholder="가수" name='singer' value="<%= singer %>"required/>
+          <input type="hidden" id="name" name="name" value="<%= user.name %>"/>
+          <input type="hidden" id="task" name="task" value="<%= user.task %>"/>
+          <input type="hidden" id="image" name='image' value="<%= image %>"/>
+          <button type="submit">신청</button>
+      </div>
+        <p style="color: rgb(255, 255, 255); font-size: 30px; font-weight: 500;">
+          TIP 검색화면에서 노래를 신청할 수 있습니다.
+        </p>
     </div>
-  </div>
   </body>
 </html>

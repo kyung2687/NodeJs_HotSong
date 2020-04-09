@@ -5,8 +5,6 @@ var userSchema = new Schema({
     name: String,
     id: String,
     password: String,
-    belong: String,
-    rank: String,
     task: String,
 
 });

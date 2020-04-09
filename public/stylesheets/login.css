@@ -1,5 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+* {
+  font-family: "Roboto", sans-serif;
+}
 html, body {
     height: 100vh;
     margin: 0;
@@ -16,7 +19,6 @@ html, body {
   z-index: 1;
   background: #FFFFFF;
   max-width: 700px;
-  margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -83,6 +85,23 @@ html, body {
   font-weight: 300;
   color: #1a1a1a;
 }
-.container .info span {
+.container .info span select {
   color: #4d4d4d;
+}
+
+select { 
+  width: 100%; /* 원하는 너비설정 */ 
+  height: 78px;
+  padding: 15px; /* 여백으로 높이 설정 */ 
+  font-family: "Roboto", sans-serif;/* 폰트 상속 */ 
+  font-size: 40px;
+  color: #4d4d4d;
+  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) 
+  no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
+  border: 1px solid #999; 
+  border-radius: 0px; /* iOS 둥근모서리 제거 */ 
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+  -moz-appearance: none; 
+  appearance: none; 
+  margin-bottom: 15px;
 }

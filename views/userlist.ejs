@@ -11,26 +11,13 @@
           <a style="font-weight: 600; color: #fff; font-size: 60px;
                     text-align: center; justify-content: center; align-items: center;
                     display: flex;">
-            재생한 곡 리스트
+            <%= name %>님의 리스트
           </a></div>
-        <div id='logout' onclick="location.href='/logout'"></div>
+        <div></div>
       </div>
       <div id='body'>
         <ul class="list">
-          <% var last_month=""
-             var last_date=""
-             var index = 1
-          %>
           <% for(var i=songlist.length - 1; i >= 0; i--) {%>
-            <% if(last_month != songlist[i].up_date.getMonth() + 1 || last_date != songlist[i].up_date.getDate()) { 
-              last_month=songlist[i].up_date.getMonth() + 1;
-              last_date=songlist[i].up_date.getDate();
-            %>
-            <hr>
-            <div style="justify-content: center; align-items: center;">
-              <a style="color:rgb(116, 114, 121); font-size: 40px;"><%= songlist[i].up_date.getMonth() + 1 %>월 <%= songlist[i].up_date.getDate() %>일</a>
-            </div>
-              <% } %>
             <li>
               <div class="songli" OnClick="location.href='<%= songlist[i].url %>'">
                 <div class="topimage" style="background-image: url(<%= songlist[i].image %>);flex:3;background-size: 100%; margin-right:10px">
@@ -42,8 +29,6 @@
                 <div style="flex: 10; justify-content: start; align-items: center;">
                   <a class="author">[<%= songlist[i].task %>]&nbsp</a>
                   <a class="author"><%= songlist[i].name %></a>
-                </div>
-                <div style="flex: 1; justify-content: start; align-items: center;">
                 </div>
               </div>
             </li>
