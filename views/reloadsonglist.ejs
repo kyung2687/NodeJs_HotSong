@@ -1,0 +1,71 @@
+
+<html>
+    <head>
+      <link rel='stylesheet' href='/stylesheets/monitoring.css' />
+    </head>
+    <body>
+        <div class='content'>
+          <div class="Nsong">
+            <% 
+               var Nid = 1
+               var Ncnt = 0
+            %>
+            <% for(var i = 0; i < song.length; i++) { %>
+              <% if(song[i].streamingYN == false) { %>
+              <% if(Ncnt % 7 == 0) { %>
+                <div class="songlist" id="Nsong<%= Nid++ %>" value="asd">
+              <% } else { %>
+                <div class="songlist">
+              <% } %>
+                <div class="songimage" style="<% if(song[i].image != '') { %> background-image: url(<%= song[i].image %>); <% } %>">
+                </div>
+                <div class="songcontent">
+                  <div class="songinfo">
+                    <p style="margin: 2px 0px 2px 10px;"><%= song[i].title %></p>
+                    <p style="margin: 2px 0px 2px 10px;"><%= song[i].singer %></p>
+                  </div>
+                  <div class="sinpeo">
+                    <p style="margin: 2px 0px 2px 10px;">[<%= song[i].task %>]</p>
+                    <p style="margin: 2px 0px 2px 10px;"><%= song[i].name %></p>
+                  </div>
+                </div>
+              </div>
+              <% Ncnt++ } %>
+            <% } %>
+          </div>
+          <div class="Ysong">
+            <% var last_month=""
+               var last_date=""
+               var index = 1
+               var Yid = 1
+            %>
+            <% for(var i=song.length - 1; i >= 0; i--) {%>
+              <% if(song[i].streamingYN == true) { %>
+              <% if(last_month != song[i].up_date.getMonth() + 1 || last_date != song[i].up_date.getDate()) { 
+                last_month=song[i].up_date.getMonth() + 1;
+                last_date=song[i].up_date.getDate();
+              %>
+                <div class="songlist" id="Ysong<%= Yid++ %>">
+                  <input type="hidden" id="Yday<%= Yid-1 %>" value="<%= song[i].up_date.getFullYear() + '.' + (song[i].up_date.getMonth()+1) + '.' + song[i].up_date.getDate() %>">
+              <% } else { %>
+                <div class="songlist">
+              <% } %>
+                <div class="songimage" style="<% if(song[i].image != '') { %> background-image: url(<%= song[i].image %>); <% } %>">
+                </div>
+                <div class="songcontent">
+                  <div class="songinfo">
+                    <p style="margin: 2px 0px 2px 10px;"><%= song[i].title %></p>
+                    <p style="margin: 2px 0px 2px 10px;"><%= song[i].singer %></p>
+                  </div>
+                  <div class="sinpeo">
+                    <p style="margin: 2px 0px 2px 10px;">[<%= song[i].task %>]</p>
+                    <p style="margin: 2px 0px 2px 10px;"><%= song[i].name %></p>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            <% } %>
+          </div>
+        </div>
+    </body>
+  </html>

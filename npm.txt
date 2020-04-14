@@ -1,0 +1,2 @@
+cd C:\Users\admin\Desktop\HotSong\nodejs
+forever start -c "npm start" ./

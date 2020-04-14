@@ -43,29 +43,16 @@
       </div>
       <div id='body'>
         <ul class="list">
-          <% var last_month=""
-             var last_date=""
-             var index = 1
-          %>
           <% for(var i=0; i < songlist.length; i++) { %>
-            <% if(last_month != songlist[i].up_date.getMonth() + 1 || last_date != songlist[i].up_date.getDate()) { 
-              last_month=songlist[i].up_date.getMonth() + 1;
-              last_date=songlist[i].up_date.getDate();
-            %>
-            <hr>
-            <div style="justify-content: center; align-items: center;">
-              <a style="color:rgb(116, 114, 121); font-size: 40px;"><%= songlist[i].up_date.getMonth() + 1 %>월 <%= songlist[i].up_date.getDate() %>일</a>
-            </div>
-              <% } %>
             <li>
               <div class="songli">
-                <div class="topimage" style="background-image: url(<%= songlist[i].image %>);flex:3;background-size: 100%; margin-right:10px" OnClick="location.href='<%= songlist[i].url %>'">
+                <div class="topimage" style="<% if(songlist[i].image != '') { %> background-image: url(<%= songlist[i].image %>); <% } %>" OnClick="location.href='<%= songlist[i].url %>'">
                 </div>
-                <div style="flex: 7; flex-direction: column; justify-content: center; align-items: flex-start;" OnClick="location.href='<%= songlist[i].url %>'">
+                <div style="flex: 8; flex-direction: column; justify-content: center; align-items: flex-start;" OnClick="location.href='<%= songlist[i].url %>'">
                   <a class="title"><%= songlist[i].title %></a>
                   <a class="singer"><%= songlist[i].singer %></a>
                 </div>
-                <div style="flex: 11; justify-content: start; align-items: center;" OnClick="javascript:showuserlist('<%= songlist[i].name %>','<%= songlist[i].task %>')">
+                <div style="flex: 9; justify-content: start; align-items: center;" OnClick="javascript:showuserlist('<%= songlist[i].name %>','<%= songlist[i].task %>')">
                   <a class="author">[<%= songlist[i].task %>]&nbsp</a>
                   <a class="author"><%= songlist[i].name %></a>
                 </div>
@@ -90,8 +77,6 @@
             </li>
           <% } %>
         </ul>
-      </div>
-      <div class="plusbutton" onclick="location.href='/songsin'">
       </div>
     </div>
   </body>

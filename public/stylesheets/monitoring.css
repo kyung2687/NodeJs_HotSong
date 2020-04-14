@@ -1,0 +1,130 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-content: stretch;
+}
+
+div {
+    display: flex;
+}
+.head {
+    width: 100vw;
+    background-color: #3f51b5;
+    height: 64px;
+    font-size: 14px;    
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    font-size: 2.1rem;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+.streaming {
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+}
+.strImage { 
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    border-radius: 100px;
+    animation: target_image 2s; 
+    animation-iteration-count: infinite;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.strImagenull { 
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    border-radius: 100px;
+    animation: target_image 2s; 
+    animation-iteration-count: infinite;
+    background: linear-gradient(#ffecd2, #fcb69f);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@keyframes target_image {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.content {
+    flex: 3;
+    flex-direction: row;
+    overflow: scroll;
+}
+.Nsong, .Ysong {
+    flex: 1;
+    overflow-y:scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    align-items: center;
+    padding-top: 15px;
+    flex-direction: column;
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.songimage {
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    background-image: linear-gradient(#ffecd2, #fcb69f);
+}
+
+.songlist {
+    border-radius: 2px;
+    margin-bottom: 15px;
+    width: 90%;  
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
+}
+
+.songcontent {
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+}
+
+.sinpeo {
+    flex: 2;
+    flex-direction: column;
+
+}
+
+.songinfo {
+    flex: 3;
+    flex-direction: column;
+}
+
+.flag {
+    flex: 1; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(97, 94, 94);
+}

@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Song = require('./model/song');
 var User = require('./model/user');
+var Streaming = require('./model/streaming');
 
 var Youtube = require('youtube-node');
 var youtube = new Youtube();
@@ -295,6 +296,43 @@ router.post('/showuserlist', (req, res) => {
     if (!song) return res.redirect('/index');
     res.render('userlist', { songlist: song, name: req.body.name });
   });
+})
+
+router.get('/monitoring', (req, res) => {
+  Song.find({}, (err, song) => {
+    if(err) return res.redirect('/');
+    Streaming.find({}, (err, str)=> {
+      console.log(str)
+      if(err) return res.redirect('/');
+      else res.render('monitoring', {song : song, str : str[0]});
+    })
+  })
+})
+
+router.get('/mtrjson', (req, res) => {
+  Song.find({}, (err, song) => {
+    if(err) return res.redirect('/');
+    Streaming.find({}, (err, str)=> {
+      if(err) return res.redirect('/');
+      else {
+        res.send({song:song, str:str[0]});
+      }
+    })
+  })
+})
+
+router.get('/str', (req, res) => {
+  Streaming.find({}, (err, str)=> {
+    if(err) return res.redirect('/');
+    else res.render('str', {str : str[0]});
+  })
+})
+
+router.get('/reloadsong', (req, res) => {
+  Song.find({}, (err, song) => {
+    if(err) return res.redirect('/');
+    else res.render('reloadsonglist', {song : song});
+  })
 })
 //router.get('/youtube', (req, res) => {  
 //  if(!req.cookies.user) return res.redirect('/');

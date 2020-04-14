@@ -6,7 +6,6 @@
 body, html {
   padding: 0;
   margin: 0;
-  background-color: rgb(238, 236, 252);
 }
 div{
   display: flex;
@@ -32,7 +31,7 @@ div{
 }
 
 #search {
-  background-image: url(../images/search.png);
+  background-image: url(../images/plus.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 30%;
@@ -127,7 +126,6 @@ ul{
 }
 li {
   border-bottom: 1px solid #efefef;
-  padding: 10px 20px;
   background-color: #fff;
   width: 90%;
   margin: auto;
@@ -138,7 +136,7 @@ li {
 }
 
 .title {
-  font-size: 35px;
+  font-size: 30px;
   text-align: start;
 }
 .num {
@@ -146,12 +144,12 @@ li {
   text-align: end;
 }
 .singer {
-  font-size: 30px;
+  font-size: 27px;
   color: rgb(141, 135, 135);
   text-align: start;
 }
 .author {
-  font-size: 35px;
+  font-size: 28px;
   text-align: start;
 }
 
@@ -225,20 +223,22 @@ button.streamed {
 }
 
 .topimage {
-  flex: 4;
-  bottom:50px; 
-  right: 50px; 
-  width: 130px; 
-  height: 130px; 
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  height: 120px; 
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 80%;
+  background-image: linear-gradient(#ffecd2, #fcb69f);
+  background-size: 100%; 
+  margin-right:10px;
+  flex:3;
 }
 
 .searchform {
   display: flex;
   padding: 15px 30px 10px;
-  flex: 1;
+  flex: 1;  
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.05), 0 3px 1px -2px rgba(0,0,0,0.05), 0 1px 5px 0 rgba(0,0,0,0.1);
 }
 .searchform > input {
   font-size: 40px;

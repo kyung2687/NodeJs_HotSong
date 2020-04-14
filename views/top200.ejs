@@ -24,20 +24,20 @@
     </div>    
     <div>
       <form class='searchform' action="/search" method="POST">
-        <input type="text" placeholder="검색할 내용" name='content'required/>
+        <input type="text" placeholder="신청할 곡 검색" name='content'required/>
         <button type="submit"></button>
       </form>
     </div>
     <div id='body' style="flex: 20;">
       <ul class="list">
+        <li style="border: 1px solid salmon;justify-content: center; align-items: center; display: flex; height: 90px; flex-direction: column;">
+          <a class="title">원하는 노래를 클릭하면 신청할 수 있습니다.</a>
+          <a class="singer">원하는 노래가 없을 경우 + 버튼을 눌러 직접 신청해주세요</a>
+        </li>
         <% for(var i=0; i < songlist.length; i++) { %>
         <li>
           <div class="songli" onclick="document.act.title.value='<%= songlist[i].title %>';document.act.singer.value='<%= songlist[i].singer %>';document.act.image.value='<%= songlist[i].image %>';document.act.submit();">
-            <div style="flex: 2; justify-content: center; align-items: center;">
-              <a class="num"><%= i+1 %></a>
-            </div>
             <div class="topimage" style="background-image: url(<%= songlist[i].image %>);">
-
             </div>
             <div style="flex: 17; flex-direction: column; justify-content: start; align-items: flex-start;">
               <a class="title"><%= songlist[i].title %></a>
@@ -48,6 +48,8 @@
         <% } %>
       </ul>
     </div>
+  </div>
+  <div class="plusbutton" onclick="location.href='/songsin'">
   </div>
 </body>
 
