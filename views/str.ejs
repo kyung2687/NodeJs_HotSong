@@ -21,8 +21,32 @@
           <h3 style="color: rgb(30, 30, 30); margin-top: 0px; margin-bottom: 5px;"><%= str.song.singer %></h3>
           <h4 style="color: rgb(30, 30, 30); margin-top: 0px;">[<%= str.song.task %>] <%= str.song.name %></h4>
         </div>
-        <% } else { %>
-          <h1 style="color: rgb(30, 30, 30); margin-bottom:0px;">스트리밍 준비 중입니다.</h1>
+        <% } else { 
+          var contentsplit = str.content.split('^');
+          %>
+          <% if(contentsplit[contentsplit.length-1] == "모두 축하해주세요 !") { %>
+            <div class="anni">
+              <div class="anniimg"></div>
+              <div style="flex-direction: column;">
+              <% for(var i in contentsplit) { %>
+                <%= contentsplit[i] %>
+                <% if(contentsplit.length-1 != i) { %><br><% } %>
+              <% } %>
+            </div>
+            </div>
+          <% } else if(contentsplit[0] == "부서 공지사항") { %>
+            <div class="notice">
+              <% for(var i in contentsplit) { %>
+                <%= contentsplit[i] %>
+                <% if(contentsplit.length-1 != i) { %><br><% } %>
+              <% } %>
+            </div>
+          <% } else { %>
+            <div class="nanni">
+                <h5 style="margin-bottom: 0;"><%= str.corona %></h5>
+                <strong style="color: crimson;"><%= contentsplit[0] %></strong>
+            </div>
+          <% } %>
         <% } %>
       </div>
   </body>

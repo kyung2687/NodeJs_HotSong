@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-
+<script>
+  function submit(title,singer, image) {
+    document.act.title.value=title;
+    document.act.singer.value=singer;
+    document.act.image.value=image;
+    document.act.submit();
+  }
+</script>
 <head>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -32,7 +39,7 @@
       <ul class="list">
         <% for(var i=0; i < songlist.length; i++) { %>
         <li>
-            <div class="songli" onclick="document.act.title.value='<%= songlist[i].title %>';document.act.singer.value='<%= songlist[i].singer %>';document.act.image.value='<%= songlist[i].image %>';document.act.submit();">
+            <div class="songli" onclick="javascript:submit('<%= songlist[i].title %>','<%= songlist[i].singer %>', '<%= songlist[i].image %>');">
                 <div style="flex: 2; justify-content: center; align-items: center;">
                   <a class="num"><%= i+1 %></a>
                 </div>

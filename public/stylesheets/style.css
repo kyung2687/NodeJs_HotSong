@@ -21,7 +21,7 @@ div{
 
 #header {
   flex: 1;
-  background-color: slateblue;
+  background-color: rgb(28,22,82);
   border-bottom: 1px solid rgb(37, 36, 36);
 }
 
@@ -62,7 +62,7 @@ input {
 }
 
 #input {
-  background-color: slateblue;
+  background-color: rgb(28,22,82);
 }
 
 .form-inline {  
@@ -178,8 +178,8 @@ li {
 .streamed {
   background-color: #fff;
   border-radius: 15px;
-  border: 1px solid slateblue;
-  color: slateblue;
+  border: 1px solid rgb(28,22,82);
+  color: rgb(28,22,82);
 }
 form.streamed {
   width: 100px;
@@ -200,7 +200,7 @@ button.streamed {
   right: 50px; 
   width: 130px; 
   height: 130px; 
-  background-color: slateblue;
+  background-color: rgb(28,22,82);
   background-image: url(../images/edit.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -214,7 +214,7 @@ button.streamed {
   left: 50px; 
   width: 130px; 
   height: 130px; 
-  background-color: slateblue;
+  background-color: rgb(28,22,82);
   background-image: url(../images/plus.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -254,7 +254,7 @@ button.streamed {
   padding-left: 10px;
   width: 100%;
   flex: 1;
-  background-color: slateblue;
+  background-color: rgb(28,22,82);
   background-image: url(../images/search.png);
   background-repeat: no-repeat;
   background-position: center center;

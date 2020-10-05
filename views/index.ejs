@@ -2,10 +2,9 @@
 <script>
   var delindex = -1
 
-  function delsong(index, title, singer) {
+  function delsong(index, _id) {
     if(delindex == index) {
-      document.delact.title.value=title
-      document.delact.singer.value=singer
+      document.delact._id.value=_id
       document.delact.submit()
     } else delindex = index;
   }
@@ -16,9 +15,7 @@
   }
 </script>
 <form action="/delsong" name="delact" method="POST">
-  <input type="hidden" id="title" name="title" value="">
-  <input type="hidden" id="singer" name="singer" value="">
-  <input type="hidden" id="name" name="name" value="<%= user.name %>">
+  <input type="hidden" id="_id" name="_id" value="">
 </form>
 <form action="/showuserlist" name="userlistact" method="POST">
   <input type="hidden" id="name" name="name" value="">
@@ -31,7 +28,9 @@
   <body>
     <div id='flexDiv'>
       <div id='header'>
-        <div id='search' onclick="location.href='/top200'"></div>
+        <div id='search_' onclick="location.href='/top200'" style="height: 100%; display: flex; justify-content: center; align-items: center;">
+          <a style="color: white; font-size: 40px;">신청하기</a>
+        </div>
         <div style="flex: 3; justify-content: center;">
           <a style="font-weight: 600; color: #fff; font-size: 60px;
                     text-align: center; justify-content: center; align-items: center;
@@ -66,9 +65,9 @@
                     </div>
                   <% } %>
                 -->
-                <% if(((user.name==songlist[i].name) && (user.task==songlist[i].task)) || user.name=="관리자") { %>
+                <% if(((user.name==songlist[i].name) && (user.task==songlist[i].task)) || user.id=="admin") { %>
                   <div style="flex: 1; justify-content: start; align-items: center;">
-                    <button class="del" OnClick="javascript:delsong('<%= i %>','<%= songlist[i].title %>','<%= songlist[i].singer %>')">
+                    <button class="del" OnClick="javascript:delsong('<%= i %>','<%= songlist[i]._id %>')">
                       X
                     </button>
                   </div>

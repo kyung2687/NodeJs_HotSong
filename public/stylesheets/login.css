@@ -7,13 +7,14 @@ html, body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: rgb(137, 128, 201);
+    background-color: rgb(200, 200, 210);
 }
 .login-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }
 .form {
   z-index: 1;
@@ -38,7 +39,7 @@ html, body {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: slateblue;
+  background: rgb(28,22,82);
   width: 100%;
   border: 0;
   padding: 15px;
@@ -49,7 +50,7 @@ html, body {
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: slateblue;
+  background: rgb(28,22,82);
 }
 .form .message {
   margin: 15px 0 0;
@@ -57,7 +58,7 @@ html, body {
   font-size: 30px;
 }
 .form .message a {
-  color: slateblue;
+  color: rgb(28,22,82);
   text-decoration: none;
 }
 .form .register-form {

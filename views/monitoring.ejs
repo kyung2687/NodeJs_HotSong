@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script language='javascript'>  
   Object.equals = function(x, y) { 
     if (x === y) return true; 
@@ -20,36 +22,16 @@
   var Nidx = 0;
   var Nid  = 1;
   var Narr = [];
-
-  var Yidx = 0;
-  var Yid  = 1;
-  var Yarr = [];
-  var Ydayarr = [];
-
-  function inputday(day, idx) {
-    document.getElementById('Ysongday').innerHTML=day
-  }
-
+  
   function _initsong() {
     Nidx = 0;
     Nid  = 1;
     Narr = [];
 
     while($("#Nsong" + Nid).offset()) {
-      Narr.push($("#Nsong" + Nid++).offset().top - 64 - $('div.streaming').height() - 31 );
+      Narr.push($("#Nsong" + Nid++).offset().top - 64 - $('div.streaming').height());
     }
     console.log(Narr)
-  }
-  function _initstr() {
-    Yidx = 0;
-    Yid  = 1;
-    Yarr = [];
-    Ydayarr = [];
-
-    while($("#Ysong" + Yid).offset()) {
-      Ydayarr.push(document.getElementById('Yday' + Yid).value)
-      Yarr.push($("#Ysong" + Yid++).offset().top - 64 - $('div.streaming').height() - 31 );
-    }
   }
   function SongMove() {
     if(Narr.length - 1 < Nidx) {
@@ -58,16 +40,6 @@
     }
     else {
       $('div.Nsong').animate({scrollTop: Narr[Nidx++]}, 2000);
-    }
-
-    if(Yarr.length - 1 < Yidx) {
-      inputday("플레이리스트");
-      $('div.Ysong').animate({scrollTop: 0}, 3000);
-      Yidx = 0;
-    }
-    else {
-      inputday(Ydayarr[Yidx], Yidx);
-      $('div.Ysong').animate({scrollTop: Yarr[Yidx++]}, 2000);
     }
   }
   var bfsong = new Object();
@@ -94,7 +66,6 @@
             $.ajax(op).done(function(data){
               $('.streaming').children().remove();
               $('.streaming').html(data);
-              _initstr();
             });
           }
           if(!Object.equals(bfsong, JSON.parse(data).song)) {
@@ -117,7 +88,6 @@
 
   $(document).ready(()=> {
     _initsong();
-    _initstr();
   })
   setInterval(reload, 1000 * 4);
   setInterval(SongMove, 1000 * 10);
@@ -127,93 +97,12 @@
     <link rel='stylesheet' href='/stylesheets/monitoring.css' />
   </head>
   <body>
+    
       <div class='head'>HotSong</div>
       <div class='streaming'>
-        <% if(str.str) { %>
-          <% if(str.song.image == '') { %>
-            <div class='strImagenull'>
-                <div style="background-color: #fff; width: 40px; height: 40px; border-radius: 100%;"></div>
-            </div>
-        <% } else { %>
-            <div class='strImage' style="background-image: url(<%= str.song.image %>);">
-                <div style="background-color: #fff; width: 40px; height: 40px; border-radius: 100%;"></div>
-            </div>
-        <% } %>
-        <div style="margin-left:20px; flex-direction: column;">
-          <h1 style="color: rgb(30, 30, 30); margin-bottom:0px;"><%= str.song.title %></h1>
-          <h3 style="color: rgb(30, 30, 30); margin-top: 0px; margin-bottom: 5px;"><%= str.song.singer %></h3>
-          <h4 style="color: rgb(30, 30, 30); margin-top: 0px;">[<%= str.song.task %>] <%= str.song.name %></h4>
-        </div>
-        <% } else { %>
-          <h1 style="color: rgb(30, 30, 30); margin-bottom:0px;">스트리밍 준비 중입니다.</h1>
-        <% } %>
-      </div>
-      <div style="flex-direction: row; margin-bottom: 10px;">
-        <div class="flag" >신청곡리스트</div>
-        <div class="flag" id='Ysongday'>플레이리스트</div>
+        <h1>로딩중...</h1>
       </div>
       <div class='content'>
-        <div class="Nsong">
-          <% 
-             var Nid = 1
-             var Ncnt = 0
-          %>
-          <% for(var i = 0; i < song.length; i++) { %>
-            <% if(song[i].streamingYN == false) { %>
-            <% if(Ncnt % 7 == 0) { %>
-              <div class="songlist" id="Nsong<%= Nid++ %>">
-            <% } else { %>
-              <div class="songlist">
-            <% } %>
-              <div class="songimage" style="<% if(song[i].image != '') { %> background-image: url(<%= song[i].image %>); <% } %>">
-              </div>
-              <div class="songcontent">
-                <div class="songinfo">
-                  <p style="margin: 2px 0px 2px 10px;"><%= song[i].title %></p>
-                  <p style="margin: 2px 0px 2px 10px;"><%= song[i].singer %></p>
-                </div>
-                <div class="sinpeo">
-                  <p style="margin: 2px 0px 2px 10px;">[<%= song[i].task %>]</p>
-                  <p style="margin: 2px 0px 2px 10px;"><%= song[i].name %></p>
-                </div>
-              </div>
-            </div>
-            <% Ncnt++ } %>
-          <% } %>
-        </div>
-        <div class="Ysong">
-          <% var last_month=""
-             var last_date=""
-             var index = 1
-             var Yid = 1
-          %>
-          <% for(var i=song.length - 1; i >= 0; i--) {%>
-            <% if(song[i].streamingYN == true) { %>
-            <% if(last_month != song[i].up_date.getMonth() + 1 || last_date != song[i].up_date.getDate()) { 
-              last_month=song[i].up_date.getMonth() + 1;
-              last_date=song[i].up_date.getDate();
-            %>
-              <div class="songlist" id="Ysong<%= Yid++ %>">
-                <input type="hidden" id="Yday<%= Yid-1 %>" value="<%= song[i].up_date.getFullYear() + '.' + (song[i].up_date.getMonth()+1) + '.' + song[i].up_date.getDate() %>">
-            <% } else { %>
-              <div class="songlist">
-            <% } %>
-              <div class="songimage" style="<% if(song[i].image != '') { %> background-image: url(<%= song[i].image %>); <% } %>">
-              </div>
-              <div class="songcontent">
-                <div class="songinfo">
-                  <p style="margin: 2px 0px 2px 10px;"><%= song[i].title %></p>
-                  <p style="margin: 2px 0px 2px 10px;"><%= song[i].singer %></p>
-                </div>
-                <div class="sinpeo">
-                  <p style="margin: 2px 0px 2px 10px;">[<%= song[i].task %>]</p>
-                  <p style="margin: 2px 0px 2px 10px;"><%= song[i].name %></p>
-                </div>
-              </div>
-            </div>
-            <% } %>
-          <% } %>
-        </div>
       </div>
   </body>
 </html>

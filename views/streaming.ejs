@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<script>
+  var backindex = -1
+
+  function backsong(index, _id) {
+    console.log(_id)
+    if(backindex == index) {
+      document.backact._id.value=_id
+      document.backact.submit()
+    } else backindex = index;
+  }
+</script>
+<form action="/backsong" name="backact" method="POST">
+  <input type="hidden" id="_id" name="_id" value="">
+</form>
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -43,7 +57,14 @@
                   <a class="author"><%= songlist[i].name %></a>
                 </div>
                 <div style="flex: 1; justify-content: start; align-items: center;">
-                </div>
+                </div>                
+                <% if(user.id=="admin") { %>
+                  <div style="flex: 1; justify-content: start; align-items: center;">
+                    <button class="del" OnClick="javascript:backsong('<%= i %>','<%= songlist[i]._id %>')">
+                      X
+                    </button>
+                  </div>
+                <% } %>
               </div>
             </li>
           <% } %>

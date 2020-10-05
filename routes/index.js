@@ -11,12 +11,16 @@ var youtube = new Youtube();
 var cheerio = require('cheerio');
 var request = require('request');
 
-youtube.setKey('AIzaSyC78DTwVHsNgyIg2uOyy81EkmUL14KOm7g');
+youtube.setKey('AIzaSyAMPVxRXLyq0--I6nCNhl0GMFe5aVZhLU4');
 
 router.get('/', (req, res) => {
   if (req.session.user) return res.redirect('/index');
   res.render('login', { result: 1 });
 })
+
+function encodeAll(s) { 
+  return s.replace(/'/g, '\\\''); 
+}
 
 function formatdate(date) {
   var year = date.getFullYear();
@@ -58,7 +62,7 @@ router.get('/songsin', (req, res) => {
   if (!req.cookies.user) return res.redirect('/');
   if (!req.session.user) return res.redirect('/');
   res.render('songsin', { title: req.query.title, singer: req.query.singer, user: req.cookies.user, image: req.query.image });
-})
+});
 
 router.post('/save', function (req, res) {
   if (!req.cookies.user) return res.redirect('/');
@@ -71,7 +75,7 @@ router.post('/save', function (req, res) {
   song.name = req.body.name;
   song.task = req.body.task;
 
-  youtube.search(req.body.title + " " + req.body.singer + " 가사", 1, (err, result) => {
+  youtube.search(req.body.title + " " + req.body.singer + "가사", 1, (err, result) => {
     if (err) {
       console.log(err)
       return res.redirect("/index");
@@ -81,12 +85,15 @@ router.post('/save', function (req, res) {
     var query1 = "https://www.googleapis.com/youtube/v3/videos?id="
     var query2 = result["items"][0]["id"]["videoId"]
     var query3 = "&part=contentDetails&key="
-    var query4 = "AIzaSyC78DTwVHsNgyIg2uOyy81EkmUL14KOm7g";
+    var query4 = "AIzaSyAMPVxRXLyq0--I6nCNhl0GMFe5aVZhLU4";
     var query = query1 + query2 + query3 + query4;
     request(query, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         var durationh = parseInt(JSON.parse(body)["items"][0]["contentDetails"]["duration"].split('M')[0].split('PT')[1]) * 60;
         var durationm = parseInt(JSON.parse(body)["items"][0]["contentDetails"]["duration"].split('M')[1].split('S')[0]);
+        if(isNaN(durationm)) durationm = 0
+        if(isNaN(durationh)) durationh = 0
+        
         song.duration = "" + (durationh + durationm);
         date = new Date(Date.now())
         song.up_date = formatdate(date)
@@ -125,7 +132,7 @@ router.get('/streamed', function (req, res, next) {
   if (!req.session.user) return res.redirect('/');
   Song.find({ streamingYN: true }, (err, song) => {
     if (err) return res.status(500).json({ error: err });
-    res.render('streaming', { songlist: song });
+    res.render('streaming', { songlist: song, user: req.cookies.user });
   })
 });
 
@@ -275,8 +282,8 @@ router.post('/search', (req, res) => {
       data.image = "//image.genie.co.kr" + imageArr[i].attribs.src
       if(typeof(titleArr[i].attribs.title) == "undefined")
         data.title = ""
-      else data.title = titleArr[i].attribs.title.trim()
-      data.singer = name
+      else data.title = encodeAll(titleArr[i].attribs.title.trim())
+      data.singer = encodeAll(name)
     
       resultArr.push(data)
     }
@@ -285,9 +292,24 @@ router.post('/search', (req, res) => {
 })
 
 router.post('/delsong', (req, res) => {
-  Song.deleteOne({name: req.body.name, title: req.body.title, singer: req.body.singer}, (err) => {
+  Song.deleteOne({_id: req.body._id}, (err) => {
     return res.redirect('/index');
   })
+})
+
+router.post('/backsong', (req, res) => {
+  Song.findOne({_id : req.body._id}, (err, song) => { 
+    if (err) return res.status(500).json({ error: err });
+    song.streamingYN = false;
+    song.save((err) => {
+      if (err) {
+      console.log(err);
+      res.json({ result: 0 });
+      return;
+    }
+    res.redirect("/index");
+    });
+  });
 })
 
 router.post('/showuserlist', (req, res) => {
@@ -299,7 +321,7 @@ router.post('/showuserlist', (req, res) => {
 })
 
 router.get('/monitoring', (req, res) => {
-  Song.find({}, (err, song) => {
+  Song.find({ streamingYN: false }, (err, song) => {
     if(err) return res.redirect('/');
     Streaming.find({}, (err, str)=> {
       console.log(str)
@@ -329,18 +351,10 @@ router.get('/str', (req, res) => {
 })
 
 router.get('/reloadsong', (req, res) => {
-  Song.find({}, (err, song) => {
+  Song.find({ streamingYN: false }, (err, song) => {
     if(err) return res.redirect('/');
     else res.render('reloadsonglist', {song : song});
   })
 })
-//router.get('/youtube', (req, res) => {  
-//  if(!req.cookies.user) return res.redirect('/');
-//  Song.find({streamingYN: false}, (err, song) => {
-//  if(err) return res.status(500).json({error: err});
-//  if(song[0]) return res.render('youtube', { songlist: song });
-//  res.render('index', { songlist: null, user: req.cookies.user });
-//});
-//})
 
 module.exports = router;

@@ -12,13 +12,15 @@
   <head>
     <link rel='stylesheet' href='/stylesheets/login.css' />
   </head>
-  <body><div class="login-page">
+  <body>
+    <div class="login-page">
+      <h2 style="font-size: 50px;">[익명] 아이디 : g / 비밀번호 : g</h2>
     <div class="form">
       <form class="login-form" action="/login" method="POST">
         <input type="text" placeholder="아이디" name='id'   required/>
         <input type="password" placeholder="비밀번호" name='password' required/>
         <button type="submit">로그인</button>
-        <p class="message">Not registered? <a href="/signup">Sign up</a></p>
+        <p class="message">가입되어 있지 않나요? <a href="/signup">회원가입</a></p>
       </form>
     </div>
   </div>
